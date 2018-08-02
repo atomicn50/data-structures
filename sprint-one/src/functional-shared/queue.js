@@ -1,8 +1,42 @@
 var Queue = function() {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
+  var someInstance = {};
+
+  var storage = {};
+
+  var count = 0;
+
+  someInstance.enqueue = function(value) {
+    count++;
+
+    if (someInstance.hasOwnProperty(count)) {
+      count++;
+    }
+
+    someInstance[count] = value;
+
+  };
+
+  someInstance.dequeue = function() {
+    if (count > 0) {
+      count--;  
+    }
+
+    if (count === 0) {
+      var firstItem = someInstance[1];
+      delete someInstance[1];
+      return firstItem;
+    }
+
+    var firstItem = someInstance[count];
+
+    delete someInstance[count];
+
+    return firstItem;
+  };
+
+  someInstance.size = function() {
+    return count;
+  };
+
+  return someInstance;
 };
-
-var queueMethods = {};
-
-
