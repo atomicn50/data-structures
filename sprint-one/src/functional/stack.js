@@ -5,27 +5,30 @@ var Stack = function() {
 
   var count = 0;
 
-  var val = [];
-
   someInstance.push = function(value) {
     count++;  
-    val[val.length] = value;
+    storage[count] = value;
 
   };
 
   someInstance.pop = function() {
-    count--;
-    var popped = val[val.length - 1];
-    val.splice(val.length - 1, 1);
+    if (count > 0) {
+      count--;  
+    }
 
-    return popped;
+    if (count === 0) {
+      var lastItem = storage[1];
+      delete storage[1];
+      return lastItem;
+    }
+    
+    var lastItem = storage[count + 1];
+    delete storage[count + 1];
+    return lastItem;
+         
   };
 
   someInstance.size = function() {
-    if (count < 0) {
-      return 0;
-    }
-
     return count;
   };
 
