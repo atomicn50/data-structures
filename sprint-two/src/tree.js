@@ -1,10 +1,10 @@
 var Tree = function(value) {
-  var newTree = Object.create(treeMethods);
+  var newTree = {};
   newTree.value = value;
 
   // your code here
-  newTree.count = 0;
   newTree.children = [];  
+  _.extend(newTree, treeMethods);
 
   return newTree;
 };
@@ -12,34 +12,38 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
-  this.children.push({value: value});
-  var apple = this.children[this.count];
+  // this.children.push({value: value});
+  // var apple = this.children[this.count];
 
-  apple.children = [];
-  apple.addChild = function(value) {
-    this.children.push({value: value});
-  };
+  // apple.children = []
+  // apple.addChild = function(value) {
+  //   this.children.push({value: value});
+  // };
   
-  this.count++;
-
- 
-  
+  // this.count++;
+  var child = Tree(value);
+  this.children.push(child);
 };
 
 treeMethods.contains = function(target) {
-  // for (var i = 0; i < this.children.length; i++) {
-  //   if (this.children[i].value === target) {
-  //     return true;
-  //   }
- 
-     
-  // }
-  // return false;
+  //input: target 
+  //output: true or false, if target is in value
+  //see if target is in value of children
+  //look into newtree, check if value is target
+// debugger;
+// console.log(this);
 
-  var findChildren = function(target, obj) {
-    
-  };
-    
+  var result = false;
+  if (this.value === target) {
+    result = true;
+  }
+
+  for (let i = 0; i < this.children.length; i++) {
+    result = result || this.children[i].contains(target);
+  }
+
+  return result;
+
 };
 
 

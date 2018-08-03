@@ -27,6 +27,7 @@ var LinkedList = function() {
     var start = list.head;
 
     while (start.next !== null) {
+
       if (start.value === target) {
         return true;
       }
@@ -36,10 +37,10 @@ var LinkedList = function() {
       if (start.value === target) {
         return true;
       }
+
     } 
     return false;
   };
-
   return list;
 };
 
