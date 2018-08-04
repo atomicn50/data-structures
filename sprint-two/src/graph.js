@@ -27,7 +27,6 @@ Graph.prototype.removeNode = function(node) {
   if (this.graph[node]) {
     if (Object.keys(this.graph[node]).length > 0) {
       var keys = Object.keys(this.graph[node]);
-      console.log(keys);
       delete this.graph[keys[0]][node];
     }
     delete this.graph[node];
