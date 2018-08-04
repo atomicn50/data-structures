@@ -63,11 +63,16 @@ console.log(this);
   for (let key in this) {
     if (key === 'value') {
       cb(this.value);
+
+      if (this.left) {
+        this.left.depthFirstLog(cb);
+      }
+
+      if (this.right) {
+        this.right.depthFirstLog(cb);
+      }
     }
 
-    if (this.left) {
-      this.left.depthFirstLog(cb);
-    }
   }
 
 };
