@@ -32,13 +32,44 @@ binaryTreePrototype.insert = function (value) {
       this.right.insert(value);
     }
   }
-console.log(this)
 };
 
 binaryTreePrototype.contains = function (value) {
+  var result = false;
+
+  if (value === this.value) {
+    result = true;  
+  }
+
+  if (value > this.value) {
+    if (this.right) {
+      result = result || this.right.contains(value);
+    } 
+  }
+
+  if (value < this.value) {
+    if (this.left) {
+      result = result || this.left.contains(value);
+    } 
+  }
+  
+  return result;
+
+  
 };
 
 binaryTreePrototype.depthFirstLog = function (cb) {
+console.log(this);
+  for (let key in this) {
+    if (key === 'value') {
+      cb(this.value);
+    }
+
+    if (this.left) {
+      this.left.depthFirstLog(cb);
+    }
+  }
+
 };
 
 
